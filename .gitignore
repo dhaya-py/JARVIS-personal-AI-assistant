@@ -1,0 +1,83 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# -------------------------
+# Environment & Secrets
+# -------------------------
+.env
+.env.*
+*.key
+*.pem
+
+# -------------------------
+# FastAPI / Uvicorn
+# -------------------------
+*.log
+logs/
+uvicorn.log
+
+# -------------------------
+# Dependency & Build
+# -------------------------
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# -------------------------
+# Testing & Coverage
+# -------------------------
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------
+# OS
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Database
+# -------------------------
+*.sqlite3
+*.db
+
+# -------------------------
+# Node (if frontend exists)
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# -------------------------
+# Docker
+# -------------------------
+.env.docker
+docker-compose.override.yml
+
+# -------------------------
+# Temporary files
+# -------------------------
+tmp/
+temp/
