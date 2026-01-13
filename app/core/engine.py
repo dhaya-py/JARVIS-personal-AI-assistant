@@ -2,6 +2,10 @@ from app.speech.speech_to_text import listen
 from app.speech.text_to_speech import speak
 from app.core.intent import detect_intent
 from app.db.database import log_interaction
+from app.utils.logger import log_info, log_error
+
+
+
 
 class JarvisEngine:
 
@@ -51,3 +55,8 @@ class JarvisEngine:
 
         else:
             return "Sorry, I did not understand that"
+
+
+    def log_interaction(self, user_input, response):
+        log_info(f"User said: {user_input}")
+        log_info(f"Jarvis replied: {response}")
