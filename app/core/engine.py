@@ -29,9 +29,15 @@ class JarvisEngine:
 
             response = self.handle_intent(intent, data)
 
-            speak(response)
+            try:
+                response = self.handle_intent(intent, data)
+            except Exception as e:
+                response = f"Something went wrong: {e}"
+                log_error(f"Error in handle_intent: {e}")
 
+            speak(response)
             log_interaction(user_input, response)
+
 
     def stop(self):
         self.running = False
