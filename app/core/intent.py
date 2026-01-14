@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -8,8 +9,14 @@ from app.actions.weather import handle_weather
 from app.actions.email import handle_email
 from app.ai.gpt import handle_gpt
 
-df = pd.read_csv("app/data/os_dataset.csv")
+# -------- SAFE DATA PATH RESOLUTION --------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "os_dataset.csv")
+
+df = pd.read_csv(DATA_PATH)
 vectorizer = CountVectorizer().fit(df["text"])
+# ------------------------------------------
+
 
 def detect_intent(user_input: str):
     text = user_input.lower()
