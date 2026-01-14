@@ -8,27 +8,32 @@ from app.actions.weather import handle_weather
 from app.actions.email import handle_email
 from app.ai.gpt import handle_gpt
 
-df = pd.read_csv("data/os_dataset.csv")
+df = pd.read_csv("app/data/os_dataset.csv")
 vectorizer = CountVectorizer().fit(df["text"])
 
-def detect_intent(user_input):
-    input_vec = vectorizer.transform([user_input])
+def detect_intent(user_input: str):
+    text = user_input.lower()
+
+    # Dataset-based intent
+    input_vec = vectorizer.transform([text])
     similarities = cosine_similarity(input_vec, vectorizer.transform(df["text"]))
     idx = similarities.argmax()
     score = similarities[0][idx]
-
     label = df["label"][idx]
 
-    if score < 0.5:
-        return "GPT", lambda: handle_gpt(user_input)
+    if score > 0.5:
+        if "open" in label or "close" in label:
+            return "SYSTEM", lambda: handle_system(label)
 
-    if "open" in label or "close" in label:
-        return "SYSTEM", lambda: handle_system(label)
+    # Keyword-based intent
+    if "weather" in text:
+        return "WEATHER", lambda: handle_weather(text)
 
-    if "weather" in user_input:
-        return "WEATHER", lambda: handle_weather(user_input)
-
-    if "email" in user_input:
+    if "email" in text:
         return "EMAIL", lambda: handle_email()
 
-    return "GPT", lambda: handle_gpt(user_input)
+    if "search" in text or "google" in text or "http" in text:
+        return "WEB", lambda: handle_web("https://www.google.com")
+
+    # Fallback
+    return "GPT", lambda: handle_gpt(text)
