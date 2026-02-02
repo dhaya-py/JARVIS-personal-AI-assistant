@@ -10,9 +10,13 @@ from app.utils.logger import log_info, log_error
 class JarvisEngine:
 
     def __init__(self):
-        self.running = True
+        self.running = False
 
     def start(self):
+        if self.running:
+            return  # prevent double start
+
+        self.running = True
         speak("Jarvis is online")
 
         while self.running:
@@ -27,19 +31,18 @@ class JarvisEngine:
 
             intent, data = detect_intent(user_input)
 
-            response = self.handle_intent(intent, data)
-
             try:
                 response = self.handle_intent(intent, data)
-            except Exception as e:
-                response = f"Something went wrong: {e}"
-                log_error(f"Error in handle_intent: {e}")
+            except Exception:
+                response = "Something went wrong, but I am still running"
 
             speak(response)
             log_interaction(user_input, response)
 
-
     def stop(self):
+        if not self.running:
+            return
+
         self.running = False
         speak("Jarvis is shutting down")
 
