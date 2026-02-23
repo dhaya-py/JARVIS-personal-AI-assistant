@@ -16,7 +16,7 @@
 3. Ensure modular and maintainable architecture
 4. Provide reliable and meaningful responses
 
-### Secondary Objectives
+### Secondary Objectives 
 1. Implement voice-based interaction
 2. Create intuitive graphical user interface
 3. Add database logging for interaction history

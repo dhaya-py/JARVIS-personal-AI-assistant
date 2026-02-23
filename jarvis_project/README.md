@@ -21,15 +21,15 @@ Jarvis is a modular, scalable AI personal assistant designed for Windows/Linux e
 
 ```
 jarvis_project/
-├── main.py                     # Main entry point
-├── requirements.txt            # Python dependencies
+├── main.py                    # Main entry point
+├── requirements.txt           # Python dependencies
 ├── .env.template              # Environment variables template
 ├── config/
 │   └── settings.py            # Configuration management
 ├── core/
 │   ├── database.py            # SQLite database manager
 │   ├── engine.py              # Main AI engine
-│   ├── intent_detector.py    # Intent classification
+│   ├── intent_detector.py     # Intent classification
 │   └── voice_system.py        # Speech recognition & TTS
 ├── modules/
 │   ├── gpt_integration.py     # OpenAI GPT integration
@@ -283,7 +283,7 @@ python main.py  # Will auto-create
 ## 📊 System Requirements
 
 ### Minimum
-- CPU: Dual-core 2.0 GHz
+- CPU: Dual-core 2.0 GHzg
 - RAM: 4 GB
 - Storage: 500 MB
 - OS: Windows 10 / Ubuntu 20.04
